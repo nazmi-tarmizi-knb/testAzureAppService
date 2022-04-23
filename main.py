@@ -2,8 +2,22 @@
 
 
 from fastapi import FastAPI
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
+import os
 
-app = FastAPI()
+origins = [
+os.environ["FRONT_END_URL"]
+]
+
+middleware = [
+    Middleware(CORSMiddleware, allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"])
+]
+
+app = FastAPI(middleware=middleware)
 
 #create dummy database
 my_dict = {1:"Number 1",2:"Number 2",3:"Number 3"}
