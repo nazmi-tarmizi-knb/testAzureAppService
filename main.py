@@ -7,7 +7,8 @@ from starlette.middleware.cors import CORSMiddleware
 import os
 
 origins = [
-os.environ["FRONT_END_URL"]
+os.environ["FRONT_END_URL"],
+"https://login.windows.net"
 ]
 
 middleware = [
